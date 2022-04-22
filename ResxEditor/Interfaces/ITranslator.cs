@@ -5,7 +5,9 @@ namespace ResxEditor.Interfaces
 {
 	public interface ITranslator
 	{
-		Task TranslateAsync(Language fromLanguage, Language toLanguage, string s);
+		Task<string> TranslateAsync(Language fromLanguage, Language toLanguage, string s);
+
+		void SaveSettings(Dictionary<string, object> settingsToSave);
 	}
 }
 

@@ -27,7 +27,7 @@ namespace ResxEditor.Enumerations
 		Slovak,
 		Slovenian,
 		Spanish,
-		Swedish
+		Swedish,
 	}
 }
 
