@@ -45,9 +45,23 @@
 	<ItemGroup>
 	  <None Remove="DeepL.net" />
 	  <None Remove="ResXResourceReader.NetStandard" />
+	  <None Remove="Services\" />
+	  <None Remove="Interfaces\" />
+	  <None Remove="Views\" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Entities\" />
+	  <None Remove="Enumerations\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="DeepL.net" Version="1.1.0" />
 	  <PackageReference Include="ResXResourceReader.NetStandard" Version="1.1.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Services\" />
+	  <Folder Include="Interfaces\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Entities\" />
+	  <Folder Include="Enumerations\" />
 	</ItemGroup>
 </Project>

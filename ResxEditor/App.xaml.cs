@@ -1,4 +1,6 @@
-﻿namespace ResxEditor;
+﻿using System.Resources.NetStandard;
+
+namespace ResxEditor;
 
 
 public partial class App : Application

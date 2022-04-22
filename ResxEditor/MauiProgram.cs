@@ -1,4 +1,5 @@
-﻿namespace ResxEditor;
+﻿using Microsoft.Maui.Hosting;
+namespace ResxEditor;
 
 public static class MauiProgram
 {
