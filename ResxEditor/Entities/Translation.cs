@@ -1,11 +1,16 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace ResxEditor.Entities
 {
-	public class Translation
-	{
-        public string Culture { get; set; }
+    [INotifyPropertyChanged]
+    public partial class Translation
+    {
+        [ObservableProperty]
+        private string _culture;
 
-        public string Value { get; set; }
+        [ObservableProperty]
+        public string _value;
     }
 }
 

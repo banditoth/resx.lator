@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Resources.NetStandard;
 using ResxEditor.Entities;
 using ResxEditor.Interfaces;
@@ -17,7 +18,7 @@ namespace ResxEditor.Services
             ResourceAsset assetResult = new ResourceAsset()
             {
                 ResourceFilePaths = paths,
-                Items = new Dictionary<string, List<Translation>>()
+                Items = new Dictionary<string, ObservableCollection<Translation>>()
             };
 
             foreach (var resourceFilePath in paths)
@@ -59,7 +60,7 @@ namespace ResxEditor.Services
 
                 using (ResXResourceWriter writer = new ResXResourceWriter(pathToSave))
                 {
-                    foreach (KeyValuePair<string, List<Translation>> node in toSave.Items.Where(z=> z.Value.Any(z=> z.Culture == culture)))
+                    foreach (KeyValuePair<string, ObservableCollection<Translation>> node in toSave.Items.Where(z=> z.Value.Any(z=> z.Culture == culture)))
                     {
                         writer.AddResource(node.Key, node.Value.Single(z=> z.Culture == culture).Value);
                     }

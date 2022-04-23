@@ -12,13 +12,11 @@ namespace ResxEditor.Services
         public const string TranslateOptionsSettingKey = "translate_options";
         private readonly string _authKey;
         private readonly TextTranslateOptions _options;
-        private readonly IPreferences _preferences;
 
-        public DeeplTranslatorService(IPreferences preferences)
+        public DeeplTranslatorService()
         {
-            _preferences = preferences;
-            _authKey = _preferences.Get<string>(AuthKeySettingKey, null);
-            _options = _preferences.Get<TextTranslateOptions>(TranslateOptionsSettingKey, null);
+            _authKey = Preferences.Get(AuthKeySettingKey, null);
+            _options = null; // TODO: IPreferences does support generic, but nor Preferences 
         }
 
         public void SaveSettings(Dictionary<string, object> settingsToSave)
@@ -31,10 +29,10 @@ namespace ResxEditor.Services
                 switch (setting.Key)
                 {
                     case AuthKeySettingKey:
-                        _preferences.Set(AuthKeySettingKey, setting.Value);
+                        Preferences.Set(AuthKeySettingKey, setting.Value.ToString());
                         break;
                     case TranslateOptionsSettingKey:
-                        _preferences.Set(TranslateOptionsSettingKey, setting.Value);
+                        // TODO: _preferences.Set(TranslateOptionsSettingKey, setting.Value);
                         break;
                     default:
                         throw new Exception("Unknown setting key: " + setting.Key);

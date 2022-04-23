@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ResxEditor.Views.ResourceEditorView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ResxEditor"
+    x:Name="this">
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="New.." Command="{Binding CreateNewResourceAssetCommand}"/>
+            <MenuFlyoutItem Text="Load existing" Command="{Binding ChooseResourceFromFileCommand}"/>
+        </MenuBarItem>
+        <MenuBarItem Text="Language">
+            <MenuFlyoutItem Text="Add a new language" Command="{Binding AddNewLanguageCommand}"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <Grid RowDefinitions="Auto,*">
+        <StackLayout>
+            <Button Text="Load"
+                Command="{Binding ChooseResourceFromFileCommand}"/>
+
+            <Button Text="New"
+                Command="{Binding CreateNewResourceAssetCommand}"/>
+
+            <Button Text="New language"
+                Command="{Binding AddNewLanguageCommand}"/>
+
+            <Button Text="Auto fill all"
+                Command="{Binding AutoFillAllTranslationsCommand}"/>
+        </StackLayout>
+
+        <ListView Grid.Row="1"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding Path=ResourceAsset.Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Key}"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"/>
+                            <Button Text="AutoFill"
+                                    VerticalOptions="Center"
+                                    Command="{Binding BindingContext.AutoFillTranslationsCommand, Source={x:Reference this}}"
+                                    CommandParameter="{Binding .}"/>
+                            <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Value}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <VerticalStackLayout Margin="25,10">
+                                            <Label Text="{Binding Path=Culture}"
+                                                   FontAttributes="Italic"/>
+                                            <Entry Text="{Binding Path=Value}"
+                                                   IsTextPredictionEnabled="True"
+                                                   WidthRequest="400"
+                                                   HeightRequest="150"/>
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </HorizontalStackLayout>
+                        </HorizontalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
