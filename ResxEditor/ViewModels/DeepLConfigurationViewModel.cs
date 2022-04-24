@@ -8,8 +8,7 @@ using ResxEditor.Views;
 
 namespace ResxEditor.ViewModels
 {
-    [INotifyPropertyChanged]
-	public partial class DeepLConfigurationViewModel
+	public partial class DeepLConfigurationViewModel : BaseViewModel
 	{
         [ObservableProperty]
 		private string _authKey;
@@ -52,7 +51,7 @@ namespace ResxEditor.ViewModels
                     { DeeplTranslatorService.TranslateOptionsSettingKey , _translationOptions },
                 });
 
-                Application.Current.MainPage = new ResourceEditorView(serviceProvider.GetService<ResourceEditorViewModel>());
+                Application.Current.MainPage = new ResourceEditorView();
             }
             catch (Exception ex)
             {

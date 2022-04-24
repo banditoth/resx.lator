@@ -4,9 +4,9 @@ namespace ResxEditor.Views;
 
 public partial class ResourceEditorView : ContentPage
 {
-    public ResourceEditorView(ResourceEditorViewModel viewModel)
+    public ResourceEditorView()
     {
         InitializeComponent();
-        BindingContext = viewModel;
+        BindingContext = ServiceProviderEverywhere.Instance.GetService<ResourceEditorViewModel>();
     }
 }

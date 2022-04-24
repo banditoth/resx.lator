@@ -8,11 +8,10 @@ using ResxEditor.Interfaces;
 
 namespace ResxEditor.ViewModels
 {
-    [INotifyPropertyChanged]
-    public partial class ResourceEditorViewModel
+    public partial class ResourceEditorViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private ResourceAsset _resourceAsset;
+        private ResourceAsset _resourceAsset; 
 
         private readonly IResourceAssetManager resourceAssetManager;
         private readonly IErrorHandler errorHandler;
@@ -32,6 +31,7 @@ namespace ResxEditor.ViewModels
         {
             try
             {
+                ResourceAsset = null;
                 ResourceAsset = new ResourceAsset()
                 {
                     Items = new Dictionary<string, ObservableCollection<Translation>>()

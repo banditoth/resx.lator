@@ -11,6 +11,7 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new DeepLConfigurationView(serviceProvider.GetService<DeepLConfigurationViewModel>());
+		ServiceProviderEverywhere.SetProvider(serviceProvider);
+		MainPage = new AppShell();
 	}
 }

@@ -4,9 +4,9 @@ namespace ResxEditor.Views;
 
 public partial class DeepLConfigurationView : ContentPage
 {
-    public DeepLConfigurationView(DeepLConfigurationViewModel viewModel)
+    public DeepLConfigurationView()
     {
         InitializeComponent();
-        BindingContext = viewModel;
+        BindingContext = ServiceProviderEverywhere.Instance.GetService<DeepLConfigurationViewModel>();
     }
 }
