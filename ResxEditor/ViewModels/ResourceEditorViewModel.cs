@@ -5,13 +5,14 @@ using CommunityToolkit.Mvvm.Input;
 using ResxEditor.Entities;
 using ResxEditor.Enumerations;
 using ResxEditor.Interfaces;
+using ResxEditor.Views;
 
 namespace ResxEditor.ViewModels
 {
     public partial class ResourceEditorViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private ResourceAsset _resourceAsset; 
+        private ResourceAsset _resourceAsset;
 
         private readonly IResourceAssetManager resourceAssetManager;
         private readonly IErrorHandler errorHandler;
@@ -24,6 +25,16 @@ namespace ResxEditor.ViewModels
             this.errorHandler = errorHandler;
             this.translator = translator;
             this.dialogHandler = dialogHandler;
+        }
+
+        internal override void OnViewAppearing()
+        {
+            base.OnViewAppearing();
+
+            if (true)
+            {
+                _ = Shell.Current.GoToAsync(nameof(DeepLConfigurationView));
+            }
         }
 
         [ICommand]
@@ -56,6 +67,27 @@ namespace ResxEditor.ViewModels
             catch (Exception ex)
             {
                 errorHandler.HandleException(ex, "Could not create resource asset, exception occured", "Creation failure");
+            }
+        }
+
+        [ICommand]
+        private async Task SaveResourceToFile()
+        {
+            try
+            {
+                if (ResourceAsset.ResourceFilePaths == null)
+                {
+                    ResourceAsset.ResourceFilePaths = new string[]
+                    {
+                        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "temp.resx")
+                    };
+                }
+
+                resourceAssetManager.SaveResourceAssetToFiles(ResourceAsset);
+            }
+            catch (Exception ex)
+            {
+                errorHandler.HandleException(ex, "Save resource failed, exception occured", "Saving failure");
             }
         }
 
@@ -143,7 +175,7 @@ namespace ResxEditor.ViewModels
                 if (string.IsNullOrWhiteSpace(pickResult?.FullPath))
                     return;
 
-                resourceAssetManager.GetResourceAssetFromFiles(GetSimilarResourceFilesFor(pickResult.FullPath));
+                ResourceAsset = resourceAssetManager.GetResourceAssetFromFiles(GetSimilarResourceFilesFor(pickResult.FullPath));
             }
             catch (Exception ex)
             {

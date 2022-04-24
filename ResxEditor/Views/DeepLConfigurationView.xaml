@@ -5,8 +5,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Shell.PresentationMode="ModalAnimated"
     xmlns:local="clr-namespace:ResxEditor">
-    <StackLayout>
-        <Entry Text="{Binding AuthKey}"/>
-        <Button Text="Save" Command="{Binding Path=SaveSettingsCommand}"/>
-    </StackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="25"
+                             Margin="0,50">
+                            <Image Source="deepllogo.png"
+                       WidthRequest="400"
+                                   HeightRequest="150"/>
+            <StackLayout HorizontalOptions="Center" Spacing="15">
+                <Label Text="Provide your authentication key:"
+               HorizontalOptions="Center"
+               FontSize="Large"/>
+                <Label Text="The key will be only stored on this machine."
+               HorizontalOptions="Center"
+               FontSize="Medium"/>
+                <Entry Text="{Binding AuthKey}"
+               WidthRequest="400"/>
+                <Button Text="Save" Command="{Binding Path=SaveSettingsCommand}"/>
+            </StackLayout>
+
+            
+            <StackLayout HorizontalOptions="Center" Spacing="15">
+                <Label Text="How to obtain a key?"
+               HorizontalOptions="Center"
+               FontSize="Title"/>
+                <Label Text="Log in into your account at deepl.com (https://www.deepl.com/pro-account/summary)"
+               HorizontalOptions="Center"
+               FontSize="Medium"/>
+                <Button Text="Open DeepL Pro account details" Command="{Binding Path=OpenDeeplPortalCommand}"
+                        HorizontalOptions="Center"/>
+                                <Label Text="Copy your authentication key to the textbox above"
+               HorizontalOptions="Center"
+               FontSize="Medium"/>
+                <Image Source="deeplkey.png"
+                       HeightRequest="250"
+                       WidthRequest="600"/>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>

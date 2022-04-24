@@ -28,6 +28,9 @@
 
             <Button Text="Auto fill all"
                 Command="{Binding AutoFillAllTranslationsCommand}"/>
+
+            <Button Text="Save"
+                Command="{Binding SaveResourceToFileCommand}"/>
         </StackLayout>
 
         <ListView Grid.Row="1"

@@ -25,12 +25,38 @@ namespace ResxEditor.ViewModels
             IDialogHandler dialogHandler)
 		{
             this.errorHandler = errorHandler;
-            //this.serviceCollection = serviceCollection;
             this.serviceProvider = serviceProvider;
             this.dialogHandler = dialogHandler;
         }
 
-		[ICommand]
+        internal override void OnViewAppearing()
+        {
+            try
+            {
+                base.OnViewAppearing();
+
+                AuthKey = Preferences.Get(DeeplTranslatorService.AuthKeySettingKey, null);
+            }
+            catch (Exception ex)
+            {
+                errorHandler.HandleException(ex, "Could not get saved auth key", "Authentication key getting failure");
+            }
+        }
+
+        [ICommand]
+        private async Task OpenDeeplPortal()
+        {
+            try
+            {
+                await Browser.OpenAsync("https://www.deepl.com/pro-account/summary");
+            }
+            catch (Exception ex)
+            {
+                errorHandler.HandleException(ex, "Could not open deepl portal, exception occured", "Could not open portal.");
+            }
+        }
+
+        [ICommand]
 		private async Task SaveSettings()
         {
             try
@@ -41,8 +67,6 @@ namespace ResxEditor.ViewModels
                     return;
                 }
 
-                //serviceCollection.AddTransient(typeof(ITranslator), typeof(DeeplTranslatorService));
-
                 DeeplTranslatorService deeplTranslatorService = (DeeplTranslatorService)serviceProvider.GetService<ITranslator>();
 
                 deeplTranslatorService.SaveSettings(new Dictionary<string, object>()
@@ -51,7 +75,7 @@ namespace ResxEditor.ViewModels
                     { DeeplTranslatorService.TranslateOptionsSettingKey , _translationOptions },
                 });
 
-                Application.Current.MainPage = new ResourceEditorView();
+                dialogHandler.DisplayAlert("Configuration successfull", "You can use deepl translator services.", "Ok");
             }
             catch (Exception ex)
             {

@@ -37,11 +37,25 @@ namespace ResxEditor.Services
                     while (node.MoveNext())
                     {
                         if (assetResult.Items.ContainsKey(node.Key?.ToString()))
+                        {
                             assetResult.Items[node.Key.ToString()].Add(new Translation()
                             {
                                 Culture = culture,
                                 Value = node.Value?.ToString()
                             });
+                        }
+                        else
+                        {
+                            assetResult.Items.Add(node.Key.ToString(), new ObservableCollection<Translation>()
+                                {
+                                new Translation()
+                                {
+                                    Culture = culture,
+                                    Value = node.Value?.ToString()
+                                }
+                            }
+                            );
+                        }
                     }
                 }
             }

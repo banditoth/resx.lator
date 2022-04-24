@@ -10,4 +10,15 @@
         Title="Editor"
         ContentTemplate="{DataTemplate views:ResourceEditorView}"
         Route="MainPage" />
+
+    <ShellContent
+        Title="Translator chooser"
+        ContentTemplate="{DataTemplate views:TranslatorChooserView}"
+        Route="ChooseTranslator" />
+
+    <ShellContent
+        Title="Configure DeepL"
+        ContentTemplate="{DataTemplate views:DeepLConfigurationView}"
+        Route="DeepLSettings" />
+
 </Shell>
