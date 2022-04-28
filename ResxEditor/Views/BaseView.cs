@@ -9,26 +9,6 @@ namespace ResxEditor.Views
 		{
 
 		}
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            if(BindingContext is BaseViewModel vm)
-            {
-                vm.OnViewAppearing();
-            }
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            if(BindingContext is BaseViewModel vm)
-            {
-                vm.OnViewDisappearing();
-            }
-        }
     }
 }
 

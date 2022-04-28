@@ -7,6 +7,8 @@ public partial class ResourceEditorView : ContentPage
     public ResourceEditorView()
     {
         InitializeComponent();
-        BindingContext = ServiceProviderEverywhere.Instance.GetService<ResourceEditorViewModel>();
+        ResourceEditorViewModel vm = ServiceProviderEverywhere.Instance.GetService<ResourceEditorViewModel>();
+        BindingContext = vm;
+        vm.Initalize();
     }
 }

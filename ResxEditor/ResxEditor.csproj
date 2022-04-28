@@ -52,11 +52,15 @@
 	  <None Remove="Entities\" />
 	  <None Remove="Enumerations\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="Microsoft.Maui.Dependencies" />
+	  <None Remove="Microsoft.Maui.Extensions" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="DeepL.net" Version="1.1.0" />
 	  <PackageReference Include="ResXResourceReader.NetStandard" Version="1.1.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+	  <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.300-rc.2.5513" />
+	  <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.300-rc.2.5513" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Services\" />

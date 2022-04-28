@@ -27,10 +27,8 @@ namespace ResxEditor.ViewModels
             this.dialogHandler = dialogHandler;
         }
 
-        internal override void OnViewAppearing()
+        public void Initalize()
         {
-            base.OnViewAppearing();
-
             if (true)
             {
                 _ = Shell.Current.GoToAsync(nameof(DeepLConfigurationView));

@@ -29,12 +29,10 @@ namespace ResxEditor.ViewModels
             this.dialogHandler = dialogHandler;
         }
 
-        internal override void OnViewAppearing()
+        public void Initalize()
         {
             try
             {
-                base.OnViewAppearing();
-
                 AuthKey = Preferences.Get(DeeplTranslatorService.AuthKeySettingKey, null);
             }
             catch (Exception ex)
@@ -75,7 +73,7 @@ namespace ResxEditor.ViewModels
                     { DeeplTranslatorService.TranslateOptionsSettingKey , _translationOptions },
                 });
 
-                dialogHandler.DisplayAlert("Configuration successfull", "You can use deepl translator services.", "Ok");
+                await Shell.Current.GoToAsync("///MainPage");
             }
             catch (Exception ex)
             {

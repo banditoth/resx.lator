@@ -7,6 +7,8 @@ public partial class DeepLConfigurationView : ContentPage
     public DeepLConfigurationView()
     {
         InitializeComponent();
-        BindingContext = ServiceProviderEverywhere.Instance.GetService<DeepLConfigurationViewModel>();
+        DeepLConfigurationViewModel vm = ServiceProviderEverywhere.Instance.GetService<DeepLConfigurationViewModel>();
+        BindingContext = vm;
+        vm.Initalize();
     }
 }

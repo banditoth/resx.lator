@@ -10,16 +10,6 @@ namespace ResxEditor.ViewModels
 		{
 
 		}
-
-		internal virtual void OnViewAppearing()
-        {
-
-        }
-
-		internal virtual void OnViewDisappearing()
-        {
-
-        }
 	}
 }
 
